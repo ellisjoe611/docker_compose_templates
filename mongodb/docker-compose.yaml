@@ -1,0 +1,22 @@
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:7.0.12-ubuntu2204
+    container_name: mongodb
+    ports:
+      - "27017:27017"  # Expose MongoDB on port 27017
+    volumes:
+      - mongodb_data:/data/db  # Persist data
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: root  # Set the root username
+      MONGODB_INITDB_ROOT_PASSWORD: rootpassword  # Set the root password
+    networks:
+      - mongodb_network
+
+volumes:
+  mongodb_data:  # Named volume for data persistence
+    name: "mongodb_data"
+
+networks:
+  mongodb_network:
+    name: "mongodb_network"
+    driver: bridge  # Use bridge networking

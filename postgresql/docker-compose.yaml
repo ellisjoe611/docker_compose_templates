@@ -1,0 +1,64 @@
+services:
+  pg_dev:
+    image: postgres:16.2-alpine3.19
+    container_name: pg_dev_container
+    volumes:
+      - pg_dev_volume:/var/lib/postgresql/data
+    networks:
+      - pg_dev_network
+    environment:
+      - POSTGRES_DB=dev
+      - POSTGRES_PASSWORD=devsecret
+    ports:
+      - "5432:5432"
+  
+  pg_qa:
+    image: postgres:16.2-alpine3.19
+    container_name: pg_qa_container
+    volumes:
+      - pg_qa_volume:/var/lib/postgresql/data
+    networks:
+      - pg_qa_network
+    environment:
+      - POSTGRES_DB=qa
+      - POSTGRES_PASSWORD=qasecret
+    ports:
+      - "5433:5432"
+  
+  pg_prod:
+    image: postgres:16.2-alpine3.19
+    container_name: pg_prod_container
+    volumes:
+      - pg_prod_volume:/var/lib/postgresql/data
+    networks:
+      - pg_prod_network
+    environment:
+      - POSTGRES_DB=prod
+      - POSTGRES_PASSWORD=prodsecret
+    ports:
+      - "5434:5432"
+
+
+volumes:
+  pg_dev_volume:
+    name: pg_dev_volume
+  
+  pg_qa_volume:
+    name: pg_qa_volume
+  
+  pg_prod_volume:
+    name: pg_prod_volume
+
+
+networks:
+  pg_dev_network:
+    name: pg_dev_network
+    driver: bridge
+
+  pg_qa_network:
+    name: pg_qa_network
+    driver: bridge
+  
+  pg_prod_network:
+    name: pg_prod_network
+    driver: bridge
