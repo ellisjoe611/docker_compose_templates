@@ -5,7 +5,7 @@ services:
     ports:
       - "27017:27017"  # Expose MongoDB on port 27017
     volumes:
-      - mongodb_data:/data/db  # Persist data
+      - mongodb_volume:/data/db  # Persist data
     environment:
       MONGODB_INITDB_ROOT_USERNAME: root  # Set the root username
       MONGODB_INITDB_ROOT_PASSWORD: rootpassword  # Set the root password
@@ -13,8 +13,8 @@ services:
       - mongodb_network
 
 volumes:
-  mongodb_data:  # Named volume for data persistence
-    name: "mongodb_data"
+  mongodb_volume:  # Named volume for data persistence
+    name: "mongodb_volume"
 
 networks:
   mongodb_network:
