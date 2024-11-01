@@ -1,0 +1,21 @@
+services:
+  redis:
+    image: redis:7.4.1
+    container_name: redis
+    # restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_volume:/data
+    networks:
+      - redis_network
+    command: redis-server
+
+volumes:
+  redis_volume:
+    name: "redis_volume"
+
+networks:
+  redis_network:
+    name: "redis_network"
+    driver: bridge
