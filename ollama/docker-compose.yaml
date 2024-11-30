@@ -1,0 +1,19 @@
+services:
+  ollama:
+    image: ollama/ollama:0.4.6
+    container_name: ollama
+    # restart: always
+    volumes:
+      - ollama_volume:/root/.ollama
+    networks:
+      - ollama_network
+    ports:
+      - "11434:11434"
+
+volumes:
+  ollama_volume:
+    name: ollama_volume
+
+networks:
+  ollama_network:
+    name: ollama_network
