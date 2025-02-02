@@ -7,7 +7,6 @@ services:
       - "6379:6379"
     volumes:
       - redis_volume:/data
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
     networks:
       - redis_network
 
