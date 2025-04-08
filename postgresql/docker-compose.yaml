@@ -7,7 +7,7 @@ services:
     networks:
       - pg_network
     environment:
-      - POSTGRES_DB=dev
+      - POSTGRES_USER=dev
       - POSTGRES_PASSWORD=devsecret
     ports:
       - "5432:5432"
